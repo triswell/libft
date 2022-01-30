@@ -1,76 +1,113 @@
-NAME	= libft.a
-HEAD	:= -I .
-CFLAGS	= -Wall -Wextra -Werror
-FOBJS	= *.o
+NAME		= libft.a
+HEAD		:= -I
+INCLUDES		= includes/
+SRC_DIR		= srcs/
+OBJ_DIR		= objs/
+CC		= gcc
+CFLAGS		= -Wall -Wextra -Werror
+FOBJS		= *.o
 RM		= rm -f
-SRC		:= \
-			ft_isalpha.c \
-			ft_isdigit.c \
-			ft_isalnum.c \
-			ft_isascii.c \
-			ft_isprint.c \
-			ft_strlen.c \
-			ft_memset.c \
-			ft_bzero.c \
-			ft_memcpy.c \
-			ft_memmove.c \
-			ft_strcpy.c \
-			ft_strncpy.c \
-			ft_strlcpy.c \
-			ft_strlcat.c \
-			ft_toupper.c \
-			ft_tolower.c \
-			ft_strchr.c \
-			ft_strrchr.c \
-			ft_strncmp.c \
-			ft_memchr.c \
-			ft_memcmp.c \
-			ft_strstr.c \
-			ft_strnstr.c \
-			ft_atoi.c \
-			ft_atoi_u.c \
-			ft_calloc.c \
-			ft_strdup.c \
-			ft_substr.c \
-			ft_strjoin.c \
-			ft_strtrim.c \
-			ft_split.c \
-			ft_abs.c \
-			ft_itoa.c \
-			ft_strmapi.c \
-			ft_striter.c \
-			ft_striteri.c \
-			ft_putchar_fd.c \
-			ft_putstr_fd.c \
-			ft_putendl_fd.c \
-			ft_putnbr_fd.c \
-			ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c \
-			ft_create_lst_strarr.c \
-			ft_element_i.c
+AR		= ar rcs
+SRC_NAMES	:= \
+			ft_isalpha \
+			ft_isdigit \
+			ft_isalnum \
+			ft_isascii \
+			ft_isprint \
+			ft_strlen \
+			ft_memset \
+			ft_bzero \
+			ft_memcpy \
+			ft_memmove \
+			ft_strcpy \
+			ft_strncpy \
+			ft_strlcpy \
+			ft_strlcat \
+			ft_toupper \
+			ft_tolower \
+			ft_strchr \
+			ft_strrchr \
+			ft_strncmp \
+			ft_memchr \
+			ft_memcmp \
+			ft_strstr \
+			ft_strnstr \
+			ft_atoi \
+			ft_atoi_u \
+			ft_calloc \
+			ft_strdup \
+			ft_substr \
+			ft_strjoin \
+			ft_strtrim \
+			ft_split \
+			ft_abs \
+			ft_itoa \
+			ft_strmapi \
+			ft_striter \
+			ft_striteri \
+			ft_putchar_fd \
+			ft_putstr_fd \
+			ft_putendl_fd \
+			ft_putnbr_fd \
+			ft_lstnew \
+			ft_lstadd_front \
+			ft_lstsize \
+			ft_lstlast \
+			ft_lstadd_back \
+			ft_lstdelone \
+			ft_lstclear \
+			ft_lstiter \
+			ft_lstmap \
+			ft_lstarr \
+			ft_lstelemi
 
-OBJS	:= $(SRC:.c=.o)
+# COLORS
+
+DEF_COLOR = \033[0;39m
+GRAY = \033[0;90m
+RED = \033[0;91m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+BLUE = \033[0;94m
+MAGENTA = \033[0;95m
+CYAN = \033[0;96m
+WHITE = \033[0;97m
+
+
+SRC 		= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_NAMES)))
+
+OBJ 		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_NAMES)))
+
+OBJF		= .cache_exists
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@ar rcs $(NAME) $(OBJS)
+$(NAME):	$(OBJ)
+	@$(AR) $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "$(GREEN)Libft compiled!$(DEF_COLOR)"
 
-%.o: %.c
-	@gcc $(CFLAGS) $(HEAD) -c $< -o $@
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJF)
+	@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
+	@$(CC) $(CFLAGS) $(HEAD) $(INCLUDES) -c $< -o $@
+
+$(OBJF):
+	@mkdir -p $(OBJ_DIR)
 
 clean:
-	@$(RM) $(FOBJS)
+	@$(RM) -rf $(OBJ_DIR)
+	@$(RM) -f $(OBJF)
+	@echo "$(BLUE)Libft objects files cleaned!$(DEF_COLOR)"
 
-fclean: clean
-	@$(RM) $(NAME)
+fclean:	clean
+	@$(RM) -f $(NAME)
+	@echo "$(CYAN)Libft executable files cleaned!$(DEF_COLOR)"
 
 
-re: fclean all
+re:	fclean all
+	@echo "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)"
+
+norm:
+	@norminette $(SRC) $(INCLUDES) | grep -v Norme -B1 || true
+
+.PHONY:		all clean fclean re norm
