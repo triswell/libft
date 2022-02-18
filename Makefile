@@ -33,6 +33,7 @@ SRC_NAMES	:= \
 			ft_strstr \
 			ft_strnstr \
 			ft_atoi \
+			ft_atoi_base \
 			ft_atoi_u \
 			ft_calloc \
 			ft_strdup \
@@ -59,7 +60,8 @@ SRC_NAMES	:= \
 			ft_lstiter \
 			ft_lstmap \
 			ft_lstarr \
-			ft_lstelemi
+			ft_lstelemi \
+			ft_get_next_line
 
 # COLORS
 

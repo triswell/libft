@@ -16,11 +16,32 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+/* *********************** */
+/* **** get_next_line **** */
+/* *********************** */
+
+# define MAX_FD 1024
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
+# endif
+
+char	*get_next_line(int fd);
+
+/* *********************** */
+/* **** t_list struct **** */
+/* *********************** */
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+
+/* ************************ */
+/* **** char functions **** */
+/* ************************ */
 
 int				ft_toupper(int c);
 
@@ -35,6 +56,10 @@ int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 
 int				ft_isalnum(int c);
+
+/* ************************** */
+/* **** string functions **** */
+/* ************************** */
 
 size_t			ft_strlen(const char *s);
 
@@ -73,6 +98,8 @@ int				ft_atoi(const char *str);
 
 unsigned int	ft_atoi_u(const char *str);
 
+int				ft_atoi_base(char *str, char *base);
+
 void			*ft_calloc(size_t count, size_t size);
 
 char			*ft_strdup(const char *s1);
@@ -100,6 +127,10 @@ void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 
 void			ft_putnbr_fd(int n, int fd);
+
+/* ************************ */
+/* **** list functions **** */
+/* ************************ */
 
 t_list			*ft_lstnew(void *content);
 
