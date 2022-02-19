@@ -17,10 +17,10 @@ void	*ft_realloc(void *ptr, size_t size)
 	void	*p;
 
 	if (!ptr)
-		return (malloc(size));
+		return (ft_calloc(size, 1));
 	if (!size)
 		return (ptr);
-	p = malloc(size);
+	p = ft_calloc(size, 1);
 	if (!p)
 		return (ptr);
 	ft_memcpy(p, ptr, size);
