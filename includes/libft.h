@@ -26,7 +26,7 @@
 #  define BUFFER_SIZE 32
 # endif
 
-char	*get_next_line(int fd);
+char	*ft_get_next_line(int fd);
 
 /* *********************** */
 /* **** t_list struct **** */

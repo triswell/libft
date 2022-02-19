@@ -21,6 +21,8 @@ void	*ft_realloc(void *ptr, size_t size)
 	if (!size)
 		return (ptr);
 	p = malloc(size);
+	if (!p)
+		return (ptr);
 	ft_memcpy(p, ptr, size);
 	return (p);
 }
