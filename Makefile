@@ -35,6 +35,7 @@ SRC_NAMES	:= \
 			ft_atoi \
 			ft_atoi_base \
 			ft_atoi_u \
+			ft_atoll \
 			ft_calloc \
 			ft_realloc \
 			ft_strdup \
