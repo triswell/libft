@@ -38,6 +38,7 @@ SRC_NAMES	:= \
 			ft_atoll \
 			ft_calloc \
 			ft_realloc \
+			ft_swap \
 			ft_strdup \
 			ft_substr \
 			ft_strjoin \
