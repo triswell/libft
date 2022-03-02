@@ -96,6 +96,8 @@ char			*ft_strnstr(const char *haystack,
 
 int				ft_atoi(const char *str);
 
+long long		ft_atoll(const char *str);
+
 unsigned int	ft_atoi_u(const char *str);
 
 int				ft_atoi_base(char *str, char *base);
