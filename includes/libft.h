@@ -106,6 +106,8 @@ void			*ft_calloc(size_t count, size_t size);
 
 void			*ft_realloc(void *ptr, size_t size);
 
+void			ft_swap(void **p1, void **p2);
+
 char			*ft_strdup(const char *s1);
 
 char			*ft_substr(char const *s, unsigned int start, size_t len);
