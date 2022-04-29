@@ -42,10 +42,10 @@ static char	*ft_get_line(char **map)
 
 char	*ft_get_next_line(int fd)
 {
-	static char *map[MAX_FD + 1];
-	char *line;
-	char *buff;
-	ssize_t size;
+	static char	*map[MAX_FD + 1];
+	char		*line;
+	char		*buff;
+	ssize_t		size;
 
 	if (BUFFER_SIZE < 0 || fd < 0 || fd > MAX_FD)
 		return (NULL);
@@ -53,14 +53,15 @@ char	*ft_get_next_line(int fd)
 	if (!buff)
 		return (NULL);
 	size = read(fd, buff, BUFFER_SIZE);
-	while (size > 0) {
+	while (size > 0)
+	{
 		buff[size] = '\0';
 		line = ft_strjoin(map[fd], buff);
 		if (map[fd])
 			free(map[fd]);
 		map[fd] = line;
 		if (ft_strchr(map[fd], '\n'))
-			break;
+			break ;
 		size = read(fd, buff, BUFFER_SIZE);
 	}
 	free(buff);
